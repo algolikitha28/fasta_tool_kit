@@ -54,5 +54,6 @@ for record in records:
             print("End:", orf["end"])
             print("Length:", orf["length"])
             print("Sequence:", orf["sequence"])
+            print("Protein:", orf["protein"])
 
     print("\n" + "=" * 50)

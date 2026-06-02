@@ -1,3 +1,4 @@
+from Bio.Seq import Seq
 def find_orfs(sequence):
 
     start_codon = "ATG"
@@ -20,11 +21,13 @@ def find_orfs(sequence):
                 if stop_codon in stop_codons:
 
                     orf = sequence[i:j+3]
+                    protein = str(Seq(orf).translate())
 
                     orfs.append({
                         "start": i,
                         "end": j + 3,
                         "sequence": orf,
+                        "protein": protein,
                         "length": len(orf)
                     })
 
