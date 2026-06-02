@@ -13,33 +13,46 @@ for record in records:
 
     seq = record["sequence"]
 
+    print("=" * 50)
     print("ID:", record["id"])
     print("Sequence:", seq)
+    print("=" * 50)
 
-    print("GC Content:", calculate_gc(seq))
+    # GC Content
+    print("\nGC Content:")
+    print(calculate_gc(seq), "%")
 
-    print("Reverse Complement:")
+    # Reverse Complement
+    print("\nReverse Complement:")
     print(reverse_complement(seq))
 
-    print("Protein Translation:")
+    # Translation
+    print("\nProtein Translation:")
     print(translate_sequence(seq))
 
-    print("Motif Positions:")
-    print(find_motif(seq, "ATG"))
+    # Motif Finder
+    print("\nMotif Positions (ATG):")
+    motifs = find_motif(seq, "ATG")
 
-    print("-" * 40)
+    if motifs:
+        print(motifs)
+    else:
+        print("Motif not found")
 
-    print("ORFs Found:")
+    # ORF Finder
+    print("\nORFs Found:")
 
     orfs = find_orfs(seq)
 
-    for idx, orf in enumerate(orfs, start=1):
+    if not orfs:
+        print("No ORFs found")
+    else:
+        for idx, orf in enumerate(orfs, start=1):
 
-        print(f"ORF {idx}")
-        print("Start:", orf["start"])
-        print("End:", orf["end"])
-        print("Length:", orf["length"])
-        print("Sequence:", orf["sequence"])
-        print()
+            print(f"\nORF {idx}")
+            print("Start:", orf["start"])
+            print("End:", orf["end"])
+            print("Length:", orf["length"])
+            print("Sequence:", orf["sequence"])
 
-    print("-" * 40)
+    print("\n" + "=" * 50)
